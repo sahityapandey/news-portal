@@ -1,40 +1,222 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+📰 LiveHindustan Clone – News Portal
 
-## Getting Started
+A fully responsive Hindi News Website built using Next.js (Pages Router), Tailwind CSS, and NewsAPI, featuring infinite scroll, trending news, categories, dynamic articles, and automatic fallback to local JSON data.
 
-First, run the development server:
+🚀 Features
+✅ Modern, Responsive UI
 
-```bash
+Clean layout inspired by LiveHindustan
+
+Multi-column layout
+
+Hero section for top story
+
+Trending news sidebar
+
+Tailwind-based UI
+
+✅ Infinite Scrolling
+
+Uses IntersectionObserver
+
+Auto loads next page
+
+Handles loading, end-of-data, and errors
+
+✅ Category-Based News
+
+Supports:
+
+Home
+
+Business
+
+Sports
+
+Technology
+
+Entertainment
+
+Science
+
+Health
+
+✅ Dynamic Routing
+
+Every article gets its own page:
+
+/articles/[slug]
+
+✅ API Layer
+/api/news
+
+
+Supports:
+
+Pagination
+
+Category filtering
+
+Trending fetch
+
+Fallback to local JSON
+
+✅ Local JSON Fallback
+
+If no NEWSAPI_KEY present → uses:
+
+data/articles.json
+
+
+Project works 100% offline.
+
+📁 Project Structure
+news-portal/
+│── pages/
+│   ├── index.js
+│   ├── articles/[slug].js
+│   └── api/news.js
+│
+│── components/
+│   ├── Navbar.jsx
+│   ├── NewsCard.jsx
+│   ├── InfiniteScrollBox.jsx
+│   ├── TrendingSidebar.jsx
+│
+│── lib/
+│   └── news.js
+│
+│── data/
+│   └── articles.json
+│
+│── public/
+│── styles/
+│── package.json
+│── README.md
+
+🛠 Technologies Used
+Tech	Purpose
+Next.js	Routing + Server-side fetching
+Tailwind CSS	UI styling
+NewsAPI.org	Real news feed
+React Hooks	State + Effects
+IntersectionObserver	Infinite scroll
+Slugify algorithm	URL slugs
+⚙️ Installation & Setup
+1️⃣ Clone the repository
+git clone https://github.com/yourusername/news-portal.git
+cd news-portal
+
+2️⃣ Install dependencies
+npm install
+
+3️⃣ Add environment variable
+
+Create a .env.local file:
+
+NEWSAPI_KEY=your_api_key_here
+
+
+If empty → project automatically falls back to local JSON.
+
+4️⃣ Start dev server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+Server starts on:
+👉 http://localhost:3000
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+📡 API Endpoints
+/api/news
+Query Param	Example	Purpose
+page	?page=2	Pagination
+pageSize	?pageSize=9	Limit
+category	?category=sports	Filter
+top	?top=1	Trending
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+Example:
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+/api/news?page=1&pageSize=10&category=business
 
-## Learn More
+🧪 Testing & Edge Cases
 
-To learn more about Next.js, take a look at the following resources:
+✔ Fallback image when image missing
+✔ Graceful message when no articles
+✔ Infinite scroll stops correctly
+✔ Long titles wrap properly
+✔ Trending fetch error → silent fallback
+✔ Article slug lookup works even offline
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+🪵 Data Model
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each article contains:
 
-## Deploy on Vercel
+{
+  id: "",
+  slug: "",
+  title: "",
+  summary: "",
+  content: "",
+  image: "",
+  author: "",
+  publishedAt: "",
+  url: ""
+}
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+🚧 Known Issues
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+NewsAPI returns limited Hindi content
+
+Rate limit restrictions
+
+Trending highly dependent on API quality
+
+🚀 Future Improvements
+
+Add search bar
+
+Add weather widget
+
+Save/bookmark articles
+
+Dark mode toggle
+
+More real-time trending logic
+
+🤖 AI Usage & Reflection
+
+Parts where AI was used:
+
+Component boilerplates
+
+Tailwind class suggestions
+
+Debugging API logic
+
+Improving infinite scroll logic
+
+How AI was corrected:
+
+Fixed incorrect imports
+
+Adjusted layout manually
+
+Fixed slug generation
+
+Improved error handling
+
+Custom improvements by the developer:
+
+Local JSON fallback logic
+
+Custom-designed UI
+
+Better performance handling
+
+Cleaned code organization
+
+👨‍💻 Author
+
+Sahitya Pandey
+Full-Stack Developer
+🔥 Passionate about building modern UI & real-world clones.
