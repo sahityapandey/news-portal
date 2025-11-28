@@ -50,7 +50,7 @@ Infinite scrolling ensures seamless browsing experience.
 ### 🖼 Wireframe Overview
 
 ┌──────────────────────────────────────────────┐
-│ Navbar │
+                │ Navbar │
 └──────────────────────────────────────────────┘
 
 ┌───────────────┬──────────────────────────────┬───────────────┐
@@ -116,3 +116,112 @@ Used in **InfiniteScrollBox** to load next pages.
   url: "https://source.com",
   source: "BBC"
 }
+
+## 📌 Part C – Challenges Faced & Learnings
+
+### **1️⃣ Tailwind & Next.js Setup Issues**
+- Faced errors during Tailwind installation (`npm error ETARGET`, `could not determine executable to run`).
+- Fixed by:
+  - Deleting `node_modules` and `package-lock.json`
+  - Installing correct Tailwind packages
+  - Running:
+    ```bash
+    npx tailwindcss init -p
+    ```
+
+### **2️⃣ App Router vs Pages Router Conflict**
+- Error: **“App Router and Pages Router both match path: /”**
+- Cause: Having both `pages/` and `app/` folders.
+- Fix: Removed the `pages/` folder and kept only App Router.
+
+### **3️⃣ Layout.js Error**
+- Missing required export in `layout.js`.
+- Fixed by adding:
+  ```js
+  export const metadata = { title: "Home" };
+<html lang="en">
+  <body>{children}</body>
+</html>
+
+## 🔧 4️⃣ News Not Displaying
+
+### **Issues Included**
+- Wrong API URL
+- Missing `await` while fetching data
+- Undefined article fields
+
+### **Fixes**
+- Created a clean data-fetching function
+- Used `console.log()` to inspect API response
+- Added optional chaining + fallback values  
+  ```js
+  article?.title || "No title available"
+## 🖼️ 5️⃣ Image Rendering Errors
+
+### **Problem**
+Some news articles from the API do not include images, which caused:
+- Layout breaking
+- Broken `<img>` elements
+- Blank blocks in UI
+
+### **Solution**
+- Added a fallback placeholder image
+- Checked `urlToImage` before rendering
+- Used a safe default image when missing
+
+```js
+<img 
+  src={article?.urlToImage || "/placeholder.jpg"} 
+  alt={article?.title || "News Image"} 
+/>
+## 🎨 6️⃣ UI Layout Problems
+
+### **Issues Noticed**
+- Layout breaking on smaller screens  
+- Cards overlapping  
+- Uneven spacing between sections  
+- No proper grid structure  
+
+### **Fix Implemented**
+- Added Tailwind spacing utilities (`p-4`, `mt-6`, `gap-6`)
+- Used a responsive grid layout
+- Ensured proper mobile → desktop scaling
+
+### **Code Snippet**
+
+```html
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+  <!-- News cards here -->
+</div>
+## 🧪 7️⃣ Error Handling & Edge Cases
+
+### **Handled Edge Cases**
+- API returns `null` or malformed data  
+- Missing fields like `title`, `image`, `author`  
+- Layout breaking due to long text  
+- Network/API failure  
+
+---
+
+### ✅ **Fallbacks Added**
+
+#### **1. Missing Image → Show Placeholder**
+```js
+<Image 
+  src={article.urlToImage || "/placeholder.jpg"} 
+  alt={article.title || "News Image"} 
+  fill
+/>
+
+Missing Title or Description
+<h2>{article?.title || "Untitled Article"}</h2>
+<p>{article?.description || "No description available."}</p>
+
+API Failure → Show Error UI
+if (!articles || articles.length === 0) {
+  return <div className="text-center text-gray-600">No news available. Please try again.</div>;
+}
+
+Loading State
+
+{loading && <p className="text-center">Loading news...</p>}
