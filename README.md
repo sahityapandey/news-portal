@@ -104,7 +104,7 @@ IntersectionObserver	Infinite scroll
 Slugify algorithm	URL slugs
 ⚙️ Installation & Setup
 1️⃣ Clone the repository
-git clone https://github.com/yourusername/news-portal.git
+git clone https:[//github.com/yourusername/news-portal.git]
 cd news-portal
 
 2️⃣ Install dependencies
